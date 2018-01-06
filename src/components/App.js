@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ImgFigure from './ImgFigure.jsx';
+import ControllerUnit from './ControllerUnit.jsx';
 import '../css/App.css';
 import data from '../data/imageDatas.json';
 
@@ -39,6 +40,29 @@ class App extends Component {
     this.state = {
       imagesArrangeArr: []
     }
+  };
+  /*
+  * @param index传入当前inver操作的索引 
+  * @ruturn {function} 闭包函数，其内的ruturn一个真正被执行的函数
+  */
+  handleInverse(index) {
+    return function() {
+      let imgsArrangeArr = this.state.imagesArrangeArr;
+      imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse
+      this.setState({
+        imagesArrangeArr: imgsArrangeArr
+      })
+    }.bind(this)
+  };
+
+  /*
+  * @param 需要居中元素的索引
+  * @ruturn {function} 闭包函数，其内的ruturn一个真正被执行的函数
+  */
+  center(index) {
+    return function() {
+      this.rearRange(index)
+    }.bind(this);
   };
   componentDidMount() {
     // 拿到整个舞台的大小
@@ -93,8 +117,11 @@ class App extends Component {
       imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
 
     // 居中的cneterIndex图片布局
-    imgsArrangeCenterArr[0].pos = centerPos;
-    imgsArrangeCenterArr[0].rotate = 0;
+    imgsArrangeCenterArr[0] = {
+      pos: centerPos,
+      rotate: 0,
+      isCenter: true
+    }
 
     // 布局位于上测的图片
     imgsArrangeTopArr.forEach((item, index) => {
@@ -103,7 +130,8 @@ class App extends Component {
           left: random(vPosRangeX[0], vPosRangeX[1]),
           top: random(vPosRangeTopY[0], vPosRangeTopY[1])
         },
-        rotate: randomDeg()
+        rotate: randomDeg(),
+        isCenter: false
       }
     })
     // 布局左右两边的图片
@@ -119,7 +147,8 @@ class App extends Component {
           left: random(hPosRangeX[0], hPosRangeX[1]),
           top: random(hPosRangeY[0], hPosRangeY[1])
         },
-        rotate: randomDeg()
+        rotate: randomDeg(),
+        isCenter: false,
       }
     }
 
@@ -143,10 +172,17 @@ class App extends Component {
             left: 0,
             top: 0
           },
-          rotate: 0
+          rotate: 0,  // 旋转角度
+          isInverse: false, // 是否翻转
+          isCenter: false   // 是否居中
         }
       }
-      ImgFigures.push(<ImgFigure data={item} key={item.fileName} ref={`figure${index}`} arrange={this.state.imagesArrangeArr[index]} />)
+      ImgFigures.push(<ImgFigure data={item} key={item.fileName} 
+        ref={`figure${index}`} arrange={this.state.imagesArrangeArr[index]} 
+        inverse={this.handleInverse(index)} center={this.center(index)}/>)
+
+      controllerUnits.push(<ControllerUnit key={item.fileName} arrange={this.state.imagesArrangeArr[index]}
+        inverse={this.handleInverse(index)} center={this.center(index)}/>)
     })
     return (
       <div className="stage" ref="stage">
