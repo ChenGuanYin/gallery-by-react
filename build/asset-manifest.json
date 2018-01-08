@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.530a0b9e.css",
-  "main.css.map": "static/css/main.530a0b9e.css.map",
-  "main.js": "static/js/main.5f5ca25b.js",
-  "main.js.map": "static/js/main.5f5ca25b.js.map",
+  "main.css": "static/css/main.59ba4ad6.css",
+  "main.css.map": "static/css/main.59ba4ad6.css.map",
+  "main.js": "static/js/main.473d6381.js",
+  "main.js.map": "static/js/main.473d6381.js.map",
   "static\\media\\1.jpg": "static/media/1.bd63d005.jpg",
   "static\\media\\10.jpg": "static/media/10.d751435c.jpg",
   "static\\media\\11.jpg": "static/media/11.75105300.jpg",
@@ -21,6 +21,5 @@
   "static\\media\\9.jpg": "static/media/9.120c52ed.jpg",
   "static\\media\\turn-arrow.eot": "static/media/turn-arrow.583ca888.eot",
   "static\\media\\turn-arrow.svg": "static/media/turn-arrow.43c74a49.svg",
-  "static\\media\\turn-arrow.ttf": "static/media/turn-arrow.bad2eaf2.ttf",
-  "static\\media\\turn-arrow.woff": "static/media/turn-arrow.860e608e.woff"
+  "static\\media\\turn-arrow.ttf": "static/media/turn-arrow.bad2eaf2.ttf"
 }

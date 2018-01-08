@@ -152,10 +152,10 @@ class App extends Component {
       }
     }
 
-    imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
     if (imgsArrangeTopArr && imgsArrangeTopArr[0]) {
       imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr[0]);
     }
+    imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
 
     // 设置总的图片位置信息
     this.setState({
